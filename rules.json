@@ -318,6 +318,16 @@
         "condition": {
             "urlFilter": "||moatads.com/*"
         }
+    },
+    {
+        "id": 33,
+        "priority": 1,
+        "action": {
+            "type": "block"
+        },
+        "condition": {
+            "urlFilter": "||connatix.com/*"
+        }
     }
 ]
 

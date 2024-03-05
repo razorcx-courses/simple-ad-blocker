@@ -1,10 +1,4 @@
-// This code listens for any changes to cookies. If a cookie is added (not removed), it attempts to remove the cookie immediately. Note that this approach has limitations:
-
-// It reacts after cookies are set, which might not fully prevent the cookie's initial use.
-// It might remove cookies you want to keep. You would need to add more logic to selectively remove cookies.
-// For a more sophisticated approach that might allow blocking cookies before they are set, you would typically need to intercept and modify HTTP headers. However, the capabilities of chrome.webRequest in Manifest V3 are restricted compared to Manifest V2, particularly regarding request modification.
-
-// Please remember to read the official Chrome extension documentation for the latest APIs and capabilities, as this field evolves rapidly, and new functionalities are introduced over time.
+//https://www.semrush.com/blog/most-visited-websites/
 
 chrome.cookies.onChanged.addListener((changeInfo) => {
   console.log("**** COOKIE CHANGE ****", changeInfo);
@@ -40,15 +34,33 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
       // console.log("**** Tab Updated ****", tab.id);
       console.log("**** AD Clean-Up Script ****");
 
-      // Select all <div> elements that have a class containing "ad-leaderboard" or "div-gpt-ad-topbanner"
       const adDivs = document.querySelectorAll(
-        'div[class*="ad-wrapper"], div[id*="ad-wrapper"]'
+        'div[class*="ad-wrapper"], div[id*="ad-wrapper"], div[class*="glacier-ad"], div[class*="video_player"], div[class*="ad-slot"], div[class*="container__ads"], div[class*="stack__ads"], div[class*="adSlug"], div[class*="display-ads-container"]'
       );
 
       // Log the found elements to the console
       adDivs.forEach((div) => console.log(div));
 
       adDivs.forEach((div) => {
+        if (div.parentNode) {
+          div.parentNode.removeChild(div);
+        }
+      });
+
+      // Get all <div> elements in the document
+      const divs = document.querySelectorAll("div");
+
+      // Filter <div> elements that have inner text "advertisement"
+      const adDivs2 = Array.from(divs).filter(
+        (div) => div.innerText.trim() === "Advertisement"
+      );
+
+      // Do something with the filtered <div> elements
+      adDivs2.forEach((div) => {
+        console.log(div); // For example, log each matching <div> to the console
+      });
+
+      adDivs2.forEach((div) => {
         if (div.parentNode) {
           div.parentNode.removeChild(div);
         }
