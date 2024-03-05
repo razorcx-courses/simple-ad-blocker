@@ -1,6 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Simple Ad Blocker",
+  "name": "adBlockster",
+  "description": "The Best Free Ad, Cookie & Clickbait Blocker. Visit adBlockster.com",
   "version": "1.0.0",
   "action": {},
   "permissions": [
@@ -27,11 +28,6 @@
     {
       "js": ["weather-script.js"],
       "matches": ["*://www.theweathernetwork.com/*"]
-    },
-    {
-      "js": ["ad-script.js"],
-      "matches": ["*://*/*"],
-      "type":"module"
     }
   ],
   "background": {
