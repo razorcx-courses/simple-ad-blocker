@@ -1,17 +1,41 @@
 {
-    "manifest_version": 3,
-    "name": "Simple Ad Blocker",
-    "version": "1.0.0",
-    "permissions": [
-        "declarativeNetRequest"
-    ],
-    "declarative_net_request": {
-        "rule_resources": [
-            {
-                "id": "ruleset_1",
-                "enabled": true,
-                "path": "rules.json"
-            }
-        ]
+  "manifest_version": 3,
+  "name": "Simple Ad Blocker",
+  "version": "1.0.0",
+  "action": {},
+  "permissions": [
+    "declarativeNetRequest",
+    "sidePanel",
+    "contextMenus",
+    "tabs",
+    "cookies",
+    "webNavigation",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "content_scripts": [
+    {
+      "js": ["weather-script.js"],
+      "matches": ["*://www.theweathernetwork.com/*"]
+    },
+    {
+      "js": ["ad-script.js"],
+      "matches": ["*://*/*"],
+      "type":"module"
     }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  }
 }
