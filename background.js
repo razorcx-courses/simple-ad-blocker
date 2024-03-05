@@ -35,7 +35,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
       console.log("**** AD Clean-Up Script ****");
 
       const adDivs = document.querySelectorAll(
-        'div[class*="ad-wrapper"], div[id*="ad-wrapper"], div[class*="glacier-ad"], div[class*="video_player"], div[class*="ad-slot"], div[class*="container__ads"], div[class*="stack__ads"], div[class*="adSlug"], div[class*="display-ads-container"]'
+        'div[class*="ad-wrapper"], div[id*="ad-wrapper"], div[id*="adchoicesBtn"], div[id*="zdcFloatingBtn"], div[class*="glacier-ad"], div[class*="video_player"], div[class*="ad--container"], div[class*="ad__slot"], div[class*="ad-slot"], div[class*="container__ads"], div[class*="dmg-ads"], div[class*="stack__ads"], div[class*="adSlug"], div[class*="display-ads-container"], div[class*="ads-container"], div[class*="billboard-container"]'
       );
 
       // Log the found elements to the console
